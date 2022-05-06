@@ -145,7 +145,7 @@
 		
 		$(function(){
 			$( "a:contains('구매이력조회')" ).on("click" , function(){
-				$(self.location).attr("href","/product/listPurchase");
+				self.location= "/purchase/listPurchase"
 			})
 		});
 		

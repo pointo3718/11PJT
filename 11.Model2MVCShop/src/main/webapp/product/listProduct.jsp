@@ -47,7 +47,7 @@
 	//=============    검색 / page 두가지 경우 모두  Event  처리 =============	
 function fncGetList(currentPage) {//pagenavigation때문에 GetUserList로 명명
       $("#currentPage").val(currentPage)
-      $("form").attr("method" , "POST").attr("action" , "/product/listProduct").submit();
+      $("form").attr("method" , "POST").attr("action" , "/product/listProduct?menu=$(menu)").submit();
    };
 
        //============= "검색"  Event  처리 =============
@@ -202,8 +202,25 @@ function fncGetList(currentPage) {//pagenavigation때문에 GetUserList로 명명
            <td align="left" prodNo="${product.prodNo}" title="Click : 상품정보 확인">
            ${product.prodName}</td>
            <td align="left">${product.price}</td>
+           
            <td align="left">${product.regDateString}</td>
-           <td align="left">${product.proTranCode}</td>
+           
+           <td align="left">
+           <c:choose>
+				<c:when test="${product.proTranCode.trim() == '0'}">판매중</c:when>
+				<c:when test="${product.proTranCode.trim() == '1'}">
+					<c:choose>
+						<c:when test="${user.role == 'admin'}">
+							구매완료 <a href="/purchase/updateTranCode?prodNo=${product.prodNo}&tranCode=2">배송하기</a>
+						</c:when>
+						<c:when test="${user.role != 'admin'}">
+							구매완료
+						</c:when>
+					</c:choose>
+				</c:when>
+				<c:when test="${product.proTranCode.trim() == '2'}">배송중</c:when>
+				<c:otherwise>배송완료</c:otherwise>	
+			</c:choose></td>
            <td align="left">
               <i class="glyphicon glyphicon-ok" id="${product.prodNo}"></i>
               <input type="hidden" value="${product.prodNo}">

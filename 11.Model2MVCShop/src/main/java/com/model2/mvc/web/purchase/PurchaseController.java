@@ -120,22 +120,17 @@ public class PurchaseController {
 		}
 		
 //		@RequestMapping("/updateTranCode.do")
-		@RequestMapping(value="updateTranCode", method=RequestMethod.POST)
+		@RequestMapping(value="updateTranCode", method=RequestMethod.GET)
 		public ModelAndView updateTranCode(@ModelAttribute("purchase")Purchase purchase , @ModelAttribute("product") Product product,HttpServletRequest request) throws Exception{
 			
-			product.setProdNo(Integer.parseInt(request.getParameter("prodNo")));
+//			product.setProdNo(Integer.parseInt(request.getParameter("prodNo")));
 			purchase.setPurchaseProd(product);
 			
-			String tranCode = request.getParameter("tranCode").trim();
+//			String tranCode = request.getParameter("tranCode").trim();
 			purchaseService.updateTranCode(purchase);
 			
 			ModelAndView modelAndView = new ModelAndView();
-			if(tranCode.equals("1")) {
-				modelAndView.setViewName("redirect:/product/listProduct?menu=manage");
-				
-			}else {
-				modelAndView.setViewName("redirect:/product/listProduct?menu=search");
-			}
+				modelAndView.setViewName("forward:/product/listProduct");
 			return modelAndView;
 		}
 //		

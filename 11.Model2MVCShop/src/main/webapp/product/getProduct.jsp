@@ -37,13 +37,15 @@
 		
 		//============= 회원정보수정 Event  처리 =============	
 		$(function(){
-			$( "button" ).on("click" , function() {
-				self.location = "/product/listProduct?menu=search"
+			$("a[href='#' ]").on("click" , function() {
+				history.go(-1);
 			});
-			
-		/* 	$( "button" ).on("click" , function() {
+		});	
+		
+		$(function(){
+			$( "button" ).on("click" , function() {
 				self.location = "/purchase/addPurchaseView?prod_no=${product.prodNo}"
-			}); */
+			}); 
 			
 			
 		});
@@ -111,8 +113,8 @@
 		
 		<div class="row">
 	  		<div class="col-md-12 text-center ">
-	  			<button type="button" class="btn btn-primary">구매</button>
-	  			<button type="button" class="btn btn-primary">확인</button>
+	  			<button type="button" class="btn btn-primary">구&nbsp;매</button>
+	  			<a class="btn btn-primary btn" href="#" role="button">확&nbsp;인</a>
 	  		</div>
 		</div>
 		

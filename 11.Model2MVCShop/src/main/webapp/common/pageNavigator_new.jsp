@@ -34,7 +34,7 @@
 				
 				<c:if test="${ resultPage.currentPage != i}">	
 					<li>
-						<a href="javascript:fncGetUserList('${ i }');">${ i }</a>
+						<a href="javascript:fncGetList('${ i }');">${ i }</a>
 					</li>
 				</c:if>
 			</c:forEach>
